@@ -6,11 +6,14 @@ Python serverless web framework with microservices in mind.
 
 ## Micro Goals
 - Should be easy to scale each app (aka recipes) independently
-- Recipes (plugiins) should be easy to install and setup
-
+- Recipes (plugins) should be easy to install and setup
+- Multi-stage deployments should be simple
+- Simple to run or invoke recipes locally for developmenet or sanity checks
+- 
 
 ##Features
 - Automatic Admin
+- Launch button deploys
 - Extensible CLI
 - Easy deploy
 - 100% CloudFormation Resources
