@@ -1,8 +1,13 @@
 # cappy
 Python serverless web framework with microservices in mind. 
 
-## Project Goal
-Build a framework that makes it easier to deploy large or small apps in a scalable way using microservices on a Functions as a Service provider (ex. AWS Lambda).
+## Overall Goal
+- Build a framework that makes it easier to deploy large or small apps in a scalable way using microservices on a Functions as a Service platform (ex. AWS Lambda). 
+
+## Micro Goals
+- Should be easy to scale each app (aka recipes) independently
+- Recipes (plugiins) should be easy to install and setup
+
 
 ##Features
 - Automatic Admin
