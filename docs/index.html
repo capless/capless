@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cappy</title>
+    <link rel="stylesheet" href="_static/base.css">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi|Modak|Paytone+One|Roboto:300,400" rel="stylesheet">
+</head>
+<body>
+<div id="content">
+    <div id="navbar">
+        <h1>Documentation</h1>
+    </div>
+    <section id="overview">
+
+        <h2>Overview</h2>
+        <p>
+            Python serverless web framework with microservices in mind.
+        </p>
+        <h3>Quick History</h3>
+        <p>
+            Cappy is the foundation for the Capless CAP (Content and Application Platform).
+            What is a CAP? We like to think of it as an evolution of the CMS or sort of a
+            marriage of the microservices, MVC framework model, and the CMS. Capless is
+            more of the frontend framework (ex. Wordpress) and Cappy is the backend framework (ex. Django).
+        </p>
+        <h3>Overall Goal</h3>
+        <p>
+            Build a framework that makes it easier to deploy large or small apps in a scalable way
+            using microservices on a Functions as a Service platform (ex. AWS Lambda).
+        </p>
+        <h3>Micro Goals</h3>
+        <ul>
+            <li>Should be easy to scale each app (aka recipes) independently</li>
+            <li>Recipes (plugins) should be easy to install and setup</li>
+            <li>Multi-stage deployments should be simple</li>
+            <li>Simple to run or invoke recipes locally for developmenet or sanity checks</li>
+        </ul>
+        <h3>Features</h3>
+        <ul>
+            <li>Automatic Admin</li>
+            <li>Launch button deploys</li>
+            <li>Extensible CLI</li>
+            <li>Easy deploy</li>
+            <li>100% CloudFormation Resources</li>
+            <li>Loosely coupled plugins and apps</li>
+            <li>Jinja2 Templates</li>
+            <li>Simple unit testing</li>
+            <li>Multiple web deployment strategies</li>
+            <li>Extensible auth backends</li>
+            <li>VPC Support</li>
+            <li>Strong integration with Environment Variables</li>
+        </ul>
+    </section>
+    <!--START Installation Docs-->
+    <section id="installation">
+        <h2>Installation</h2>
+        <h3>Verify You Have Python 2.7 Installed</h3>
+        <p>
+            From your terminal run the <code>python -V</code> command.
+            If the output looks similar to <b>Python 2.7.12</b> you're in good shape.
+        </p>
+        <h4>Why Python 2.7?</h4>
+        <p>
+            As of now, that is the only version of Python that AWS Lambda supports.
+        </p>
+        <h3>Install Via Pip</h3>
+        <pre><code>pip install cappy</code></pre>
+
+    </section>
+    <!--END Installation Docs-->
+
+    <!--START Quick Start-->
+    <section id="quick-start">
+        <h2>Quick Start</h2>
+        <h3>Start a Cappy Project</h3>
+<pre><code>>>>cappy init
+<b>App Name:</b> demoapp
+<b>Default Stage Name [dev]: dev</b>
+cappy.json file created in <b>demoapp</b> folder.
+>>>cd demoapp
+>>>cappy create_app blog
+<b>Use API Gateway? [y]:</b> y
+<b></b>
+<b>Function Bucket [demoapp-function-3459]:</b> demo-bucket
+<b>Static Bucket [demoapp-static-32234]:</b> static-bucket
+<b>Use CloudFront for Static Files? [y]: y</b>
+<b>Use CloudFront for Dynamic Requests? Requires more cappy.json configuration. [n]: y</b>
+</code></pre>
+    </section>
+
+    <section id="document-class">
+        <h2>Document Class</h2>
+    </section>
+    <section id="properties">
+        <h2>Properties</h2>
+    </section>
+    <section id="queries">
+        <h2>Queries</h2>
+    </section>
+    <section id="backends">
+        <h2>Backends</h2>
+    </section>
+    <section id="views">
+        <h2>Views</h2>
+    </section>
+    <section id="functions">
+        <h2>Functions</h2>
+    </section>
+    <section id="urls-json">
+        <h2>urls.json</h2>
+    </section>
+    <section id="admin">
+        <h2>Admin</h2>
+    </section>
+    <section id="unit-tests">
+        <h2>Unit Tests</h2>
+    </section>
+    <section id="cli">
+        <h2>CLI Reference</h2>
+    </section>
+</div>
+<nav>
+    <h2 id="toc-header">Cappy</h2>
+
+    <h3>Getting Started</h3>
+    <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#quick-start">Quick Start</a></li>
+    </ul>
+
+    <h3>Settings</h3>
+    <ul>
+        <li><a href="#settings">Full Settings List</a></li>
+    </ul>
+    <h3>Models</h3>
+    <ul>
+        <li><a href="#document-class">Document Class</a></li>
+        <li><a href="#properties">Properties</a></li>
+        <li><a href="#queries">Queries</a></li>
+        <li><a href="#backends">Backends</a></li>
+    </ul>
+    <h3>Views &amp; Functions</h3>
+    <ul>
+        <li><a href="#views">Views</a></li>
+        <li><a href="#functions">Functions</a></li>
+    </ul>
+    <h3>Templates</h3>
+    <ul>
+        <li><a href="#jinija">Jinja Templates</a></li>
+    </ul>
+    <h3>URL Configuration</h3>
+    <ul>
+        <li><a href="#urls-json">urls.json</a></li>
+    </ul>
+    <h3>Admin</h3>
+    <ul>
+        <li><a href="#admin">Admin</a></li>
+    </ul>
+    <h3>Unit Test</h3>
+    <ul>
+        <li><a href="#unit-test">Unit Tests</a></li>
+    </ul>
+    <h3>Command Line Interface</h3>
+    <ul>
+        <li><a href="#cli">CLI Reference</a></li>
+    </ul>
+</nav>
+</body>
+</html>
