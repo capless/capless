@@ -34,17 +34,17 @@ class ObjectMixin(object):
         id_value = self.event.path_vars.get(self.id_attribute)
         pk = self.event.path_vars.get('pk')
         if not id_value and not pk:
-            raise ValueError('KevObjectMixins require either an id_value ("slug") or pk value.')
+            raise ValueError('ObjectMixins require either an id_value ("slug") or pk value.')
         if id_value:
             return self.model_class.objects().get({self.id_attribute:id_value})
 
         return self.model_class.get(pk)
 
 
-class ObjectView(TemplateMixin,ObjectMixin,View):
+class DetailView(TemplateMixin,ObjectMixin,View):
 
     def get_context(self,**kwargs):
-        context = super(ObjectView, self).get_context(**kwargs)
+        context = super(DetailView, self).get_context(**kwargs)
         context['object'] = self.get_object()
         return context
 
@@ -69,7 +69,7 @@ class MultiObjectMixin(ObjectMixin):
     def get_page_number(self):
         return self.event.path_vars.get('page',self.event.querystring.get('page'))
 
-class MultiObjectView(TemplateMixin,MultiObjectMixin,View):
+class ListView(TemplateMixin,MultiObjectMixin,View):
 
 
     def get_context(self,**kwargs):

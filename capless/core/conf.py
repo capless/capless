@@ -1,5 +1,5 @@
+import importlib
 from envs import env
-from cappy.utils import import_mod
 
 
 class Settings(object):
@@ -10,11 +10,9 @@ class Settings(object):
 
     AUTH_BACKENDS = env('AUTH_BACKENDS',
         ['cappy.auth.backends.CognitoUserPoolAuth'],var_type='list')
-    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 
     def __init__(self):
-        self.settings_mod = import_mod(
+        self.settings_mod = importlib.import_module(
             env('CAPPY_SETTINGS_MODULE'))
         self.parse_settings_mod()
 

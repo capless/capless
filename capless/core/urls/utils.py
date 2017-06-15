@@ -1,6 +1,6 @@
 from envs import env
 
-from cappy.utils import import_util
+from ...utils import import_util
 
 
 def reverse_url_list(name):

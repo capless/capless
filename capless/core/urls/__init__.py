@@ -1,4 +1,5 @@
-from cappy.utils import import_util
+from ...utils import import_util
+
 
 class URL(object):
 
