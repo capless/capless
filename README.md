@@ -27,5 +27,3 @@ Build a framework that makes it easier to deploy large or small apps in a scalab
 - VPC Support
 - Strong integration with Environment Variables
 
-## Feedback
-For questions join our Slack channel by visiting [slack.capless.io](https://slack.capless.io).
