@@ -39,6 +39,7 @@ class CaplessCLI(object):
 
     def create_app_files(self,options):
         app_name = options.get('name')
+        app_description = options.get('description')
         #Create templates folder
         temp_dir = '{}/templates/'.format(app_name)
         os.makedirs(temp_dir)
@@ -61,6 +62,16 @@ class CaplessCLI(object):
         urls_template = CLI_TEMPLATES.get_template('urls.py.jinja2')
         with open('{}/urls.py'.format(app_name), 'w+') as f:
             f.write(urls_template.render(app_name=app_name))
+
+        # Create sam.py
+        sam_template = CLI_TEMPLATES.get_template('sam.py.jinja2')
+        with open('{}/sam.py'.format(app_name), 'w+') as f:
+            f.write(sam_template.render(app_name=app_name,
+                                         app_description=app_description))
+        # Create sam.py
+        reqs_template = CLI_TEMPLATES.get_template('requirements.txt.jinja2')
+        with open('{}/requirements.txt'.format(app_name), 'w+') as f:
+            f.write(reqs_template.render())
 
         #Create __init__.py
         with open('{}/__init__.py'.format(app_name),'w+') as f:

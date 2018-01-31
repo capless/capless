@@ -1,4 +1,5 @@
-from .events import Event
+from capless.core.events import Event
+
 
 class Mixin(object):
 
@@ -8,8 +9,8 @@ class Mixin(object):
             'context':self.context
         }
 
+
 class View:
-    event_type = None
 
     def __init__(self,**kwargs):
         for k,v in kwargs.items():
@@ -20,18 +21,17 @@ class View:
         """
         Main entry point for a request-response process.
         """
-        def func(event_dict,context):
+        def func(event,context):
             self = cls(**initkwargs)
             if hasattr(self, 'get') and not hasattr(self, 'head'):
                 self.head = self.get
-            self.event_dict = event_dict
+            self.event = event
             self.context = context
-            return self.dispatch(event_dict, context)
+            return self.dispatch(event, context)
         return func
 
 
-    def dispatch(self, event_dict, context):
-        self.event = self.event_type(event_dict)
+    def dispatch(self, event, context):
         self.context = context
         method = getattr(self,self.event.method)
         return method()

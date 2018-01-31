@@ -2,16 +2,31 @@ import paginate
 
 from . import Mixin,View
 from ..loading.templates import env
-from .events import APIGWEvent
 
 
-class TemplateMixin(Mixin):
+class APIGWMixin(Mixin):
     content_type = 'text/html'
+
+    def get_context(self,**kwargs):
+        context = super(APIGWMixin, self).get_context(**kwargs)
+        context['status_code'] = 200
+        return context
+    def get_content_type(self):
+        return self.content_type
+
+    def get_headers(self):
+        return {
+            'content-type':self.get_content_type()
+        }
+
+
+class TemplateMixin(APIGWMixin):
+
     template_name = 'base.html'
+
     request_method_names = [
         'get', 'post', 'head', 'delete',
         'put', 'patch', 'trace', 'options']
-    event_type = APIGWEvent
 
     def get_template(self):
         return env.get_template(self.template_name)
@@ -19,7 +34,13 @@ class TemplateMixin(Mixin):
     def get(self):
         context = self.get_context()
         template = env.get_template(self.template_name)
-        return template.render(**context)
+
+        return {
+            'body':template.render(**context),
+            'headers':self.get_headers(),
+            'statusCode':context['status_code'],
+            'isBase64Encoded':False
+        }
 
 
 class TemplateView(TemplateMixin,View):
@@ -31,8 +52,8 @@ class ObjectMixin(object):
     id_attribute = 'slug'
 
     def get_object(self):
-        id_value = self.event.path_vars.get(self.id_attribute)
-        pk = self.event.path_vars.get('pk')
+        id_value = self.event.path_params.get(self.id_attribute)
+        pk = self.event.path_params.get('pk')
         if not id_value and not pk:
             raise ValueError('ObjectMixins require either an id_value ("slug") or pk value.')
         if id_value:
@@ -69,11 +90,12 @@ class MultiObjectMixin(ObjectMixin):
     def get_page_number(self):
         return self.event.path_vars.get('page',self.event.querystring.get('page'))
 
+
 class ListView(TemplateMixin,MultiObjectMixin,View):
 
 
     def get_context(self,**kwargs):
-        context = super(ObjectView, self).get_context(**kwargs)
+        context = super(ListView, self).get_context(**kwargs)
         if self.paginate_by:
             context['object_list'] = self.get_object_list_paginated()
         else:

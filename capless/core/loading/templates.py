@@ -1,4 +1,4 @@
-from jinja2 import BaseLoader, TemplateNotFound, Environment
+from jinja2 import BaseLoader, TemplateNotFound, Environment, FileSystemLoader
 from kev.loading import KevHandler
 from envs import env
 from kev import Document, CharProperty, DateTimeProperty
@@ -27,7 +27,6 @@ class Template(Document):
 class KevLoader(BaseLoader):
     def get_source(self, environment, template):
         t = Template.objects().filter({'name': template})
-        t_len = len(t)
         try:
             def get_last_mod():
                 return t[0].last_modified
@@ -38,5 +37,5 @@ class KevLoader(BaseLoader):
 
 
 env = Environment(
-    loader=KevLoader()
+    loader=FileSystemLoader(env('TEMPLATES_PATH'))
 )

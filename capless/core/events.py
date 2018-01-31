@@ -1,6 +1,6 @@
 from envs import env
 
-from cappy.utils import import_mod, import_util
+from capless.utils import import_util
 
 
 class Event(object):
@@ -10,11 +10,10 @@ class Event(object):
 
 
 class APIGWEvent(Event):
-
-    def __init__(self,event,context):
+    def __init__(self, event, context):
         self.body = event['body']
         self.resource = event['resource']
-        self.http_method = event['httpMethod']
+        self.method = event['httpMethod']
         self.path_params = event['pathParameters']
         self.headers = event['headers']
         self.stage_vars = event['stageVariables']

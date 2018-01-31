@@ -1,3 +1,9 @@
+import os
+
+if os.getenv('LAMBDA_TASK_ROOT'):
+    import sys
+    sys.path.append('_venv')
+
 from capless.core.app import App
 
 
