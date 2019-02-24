@@ -1,8 +1,12 @@
 from setuptools import setup, find_packages
 
-from pip.req import parse_requirements
+def parse_requirements(filename):
+    """ load requirements from a pip requirements file """
+    lineiter = (line.strip() for line in open(filename))
+    return [line for line in lineiter if line and not line.startswith("#")]
 
-install_reqs = parse_requirements('requirements.txt', session=False)
+
+VERSION = '0.1.0'
 
 setup(
     name='capless',
@@ -11,9 +15,9 @@ setup(
     author='Brian Jinwright',
     license='GNU GPL v3',
     keywords='serverless, framework,',
-    install_requires=[str(ir.req) for ir in install_reqs],
+    install_requires=parse_requirements('requirements.txt'),
     packages=find_packages(),
-    version='0.1.0',
+    version=VERSION,
     entry_points='''
         [console_scripts]
         capless=capless.cli:capless

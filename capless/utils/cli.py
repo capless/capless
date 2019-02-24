@@ -3,13 +3,15 @@ import os
 import yaml
 
 
-from capless.core.exceptions import CappyInitializeError
-
-
 CLI_TEMPLATES = jinja2.Environment(loader=jinja2.PackageLoader(
     'capless','templates'))
 
-class CaplessCLI(object):
+
+class CaplessError(Exception):
+    pass
+
+
+class CLI(object):
 
     def __init__(self):
         pass
@@ -30,7 +32,7 @@ class CaplessCLI(object):
                 f.write(yaml.safe_dump(config, default_flow_style=False))
         except FileNotFoundError:
             if file_required:
-                raise CappyInitializeError(
+                raise CaplessError(
                     'Your current directory does not have the required '
                     '{} file.'.format(file_name))
 
@@ -43,10 +45,6 @@ class CaplessCLI(object):
         #Create templates folder
         temp_dir = '{}/templates/'.format(app_name)
         os.makedirs(temp_dir)
-
-        html_template = CLI_TEMPLATES.get_template('base.html')
-        with open('{}base.html'.format(temp_dir),'w+') as f:
-            f.write(html_template.render(app_name=app_name))
 
         #Create views.py
         view_template = CLI_TEMPLATES.get_template('views.jinja2')
@@ -63,12 +61,7 @@ class CaplessCLI(object):
         with open('{}/urls.py'.format(app_name), 'w+') as f:
             f.write(urls_template.render(app_name=app_name))
 
-        # Create sam.py
-        sam_template = CLI_TEMPLATES.get_template('sam.py.jinja2')
-        with open('{}/sam.py'.format(app_name), 'w+') as f:
-            f.write(sam_template.render(app_name=app_name,
-                                         app_description=app_description))
-        # Create sam.py
+        # Create requirements.txt
         reqs_template = CLI_TEMPLATES.get_template('requirements.txt.jinja2')
         with open('{}/requirements.txt'.format(app_name), 'w+') as f:
             f.write(reqs_template.render())
@@ -85,4 +78,3 @@ class CaplessCLI(object):
     def create_function(self,options):
 
         self.write_config('{}/function.yaml'.format(options['name']),options)
-

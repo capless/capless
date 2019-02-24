@@ -1,6 +1,11 @@
 click>=6.6
+docb>=0.10.1
 envs>=1.2.0
 jinja2>=2.9.5
+moto
 paginate>=0.5.6
-kev>=0.9.2
 pyyaml>=3.12
+sammy>=0.3.10
+swaggyp>=0.1.0
+unipath>=1.1
+valley>=1.4.1

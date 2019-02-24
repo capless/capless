@@ -1,13 +1,14 @@
+
 from capless.utils import import_util
 from capless.core.events import APIGWEvent
 
 
 def get_url(url_config,resource):
-    print('URL Config',url_config,'Resource',resource)
     def url_filter(url):
         if url.resource == resource:
             return url
     return filter(url_filter,url_config)
+
 
 class App(object):
 
