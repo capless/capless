@@ -1,4 +1,5 @@
-# cappy
+# hillman
+
 Python serverless web framework with microservices in mind. 
 
 ## Quick History
