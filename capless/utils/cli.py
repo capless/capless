@@ -17,7 +17,7 @@ class CLI(object):
         pass
 
     def write_config(self,file_name,options):
-        os.makedirs(options['name'])
+        os.makedirs(options['project_name'])
         with open(file_name, 'w+') as f:
             f.write(yaml.safe_dump(options, default_flow_style=False ))
 
@@ -37,7 +37,7 @@ class CLI(object):
                     '{} file.'.format(file_name))
 
     def create_project(self,options):
-        self.write_config('{}/capless.yaml'.format(options['name']),options)
+        self.write_config('{}/capless.yaml'.format(options['project_name']),options)
 
     def create_app_files(self,options):
         app_name = options.get('name')

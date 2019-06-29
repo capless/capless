@@ -1,7 +1,7 @@
 import click
 
 from capless.utils.config import load_config
-
+from capless.utils.cli import CLI
 
 def drange(start, stop, step):
     r = start
@@ -27,10 +27,17 @@ def capless():
 @click.option('--description',prompt=True)
 @click.option('--bucket',prompt=True)
 @click.option('--memory',prompt=True,type=click.Choice(MEMORY_CHOICES))
-@click.option('--cache-cluster',prompt=True,type=click.Choice(['True','False']))
+@click.option('--cache-cluster',prompt=True,type=bool)
 @click.option('--region',prompt=True,type=click.Choice(REGION_CHOICES))
 def init(project_name,description,bucket,memory,cache_cluster,region):
-    pass
+    CLI().create_project({
+        'project_name': project_name,
+        'description': description,
+        'bucket': bucket,
+        'memory': int(memory),
+        'cache_cluster': cache_cluster,
+        'region': region
+    })
 
 
 def local():
